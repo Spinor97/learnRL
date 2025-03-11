@@ -47,12 +47,15 @@ class Env(gym.Env):
         self.state = np.array([prey, predator, resource])
         self.timestep += 1
 
-        done = (self.timestep >= 1000) or (prey == 0) or (predator == 0)
-        return self.state, reward, done, {}
+        terminated = (prey == 0) or (predator == 0)
+        truncated = (self.timestep >= 1000)
+        return self.state, reward, terminated, truncated, {}
 
 
-    def reset(self):
+    def reset(self, seed=None):
+        if seed is not None:
+            self.np_random, seed = gym.utils.seeding.np_random(seed)
         self.state = np.array([150., 30., 500.])
         self.timestep = 0
-        return self.state
+        return self.state, {}
     
