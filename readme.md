@@ -1,0 +1,2 @@
+This is a toy model about sheep(prey) and predator(wolf). The changing rule is the Lotka-Volterra Equations.
+The reeward function is to maintain  the initial ratio between wolf and sheep while maxmize the resource.
